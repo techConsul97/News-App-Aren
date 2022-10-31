@@ -18,7 +18,7 @@ class NewsUseCases(
         loadedList: List<Data>
     ): Flow<Resource<List<Data>>> = flow {
         emit(Resource.Loading(loadedList))
-        try {
+
             repository.getNews(page, publishedBefore).collect {
                 if (it.isSuccessful) {
                     emit(Resource.Success(loadedList.plus(it.body()!!.data)))
@@ -26,14 +26,9 @@ class NewsUseCases(
                     emit(Resource.Error(it.message()))
                 }
             }
-        } catch (e: Exception) {
-            Log.d("Bug",e.localizedMessage ?: "eee")
-            emit(Resource.Error("could not load online news"))
-        }
-
     }
 
-    fun getDatabaseNewsUseCase() = repository.getSavedNews()
+   fun getDatabaseNewsUseCase() = repository.getSavedNews()
 
     suspend fun insertNewsUseCase(news: Data) {
         repository.saveNews(news)

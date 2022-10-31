@@ -37,7 +37,7 @@ class SavedNewsFragment : Fragment() {
         )
         binding.recyclerviewFav.adapter = adapter
 
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             viewModel.savedList.collect {
                 if (it.isEmpty()) binding.tvEmptyList.visibility = View.VISIBLE
                 else binding.tvEmptyList.visibility = View.INVISIBLE

@@ -39,7 +39,7 @@ class RepositoryImp(
     }
 
 
-    override fun getSavedNews(): Flow<List<Data>> = newsDao.getAllNews()
+    override  fun getSavedNews(): Flow<List<Data>> = newsDao.getAllNews()
 
     override suspend fun saveNews(data: Data) {
         newsDao.insertNews(data)

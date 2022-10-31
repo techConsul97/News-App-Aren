@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
     private val _newsList = MutableStateFlow<Resource<List<Data>>>(Resource.Success(listOf()))
     val newsList: StateFlow<Resource<List<Data>>> = _newsList
 
-    val savedList: Flow<List<Data>> = newsUseCases.getDatabaseNewsUseCase()
+     val savedList: Flow<List<Data>>  = newsUseCases.getDatabaseNewsUseCase()
 
     private var loadedPage = 0
     private var currentDateTime: String? = null
@@ -30,6 +30,9 @@ class MainViewModel @Inject constructor(
     init {
         getNewsList()
     }
+
+
+
 
     fun getNewsList() {
             viewModelScope.launch {
@@ -45,6 +48,8 @@ class MainViewModel @Inject constructor(
             }
         loadedPage++
     }
+
+
 
     fun saveNews(data: Data) = viewModelScope.launch(Dispatchers.IO) {
         newsUseCases.insertNewsUseCase(data)

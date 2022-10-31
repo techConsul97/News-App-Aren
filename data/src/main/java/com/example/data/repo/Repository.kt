@@ -10,7 +10,7 @@ interface Repository {
 
     suspend fun getNews(page: Int, publishedBefore: String?): Flow<Response<AllNewsList>>
 
-    fun getSavedNews(): Flow<List<Data>>
+     fun getSavedNews(): Flow<List<Data>>
 
     suspend fun saveNews(data: Data)
 
